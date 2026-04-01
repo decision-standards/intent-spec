@@ -1,104 +1,76 @@
 # SIS — Standard Intent Specification
 
-A standard for representing and evaluating intent in AI systems before execution.
+The execution contract layer for autonomous systems.
 
----
+SIS defines the decision contract for autonomous systems.
 
-## Overview
-
-SIS (Standard Intent Specification) defines a universal structure for how intent is expressed, evaluated, and executed across AI systems.
-
-As agents begin to take actions — not just generate outputs — the missing piece is not execution infrastructure, but a consistent way to decide:
-
-- what should happen  
-- whether it is allowed  
-- under what conditions it can proceed  
-
-SIS provides that interface.
-
-It sits between **intent formation** and **execution systems**, enabling consistent decision evaluation across agents, services, and environments.
+It standardizes how intent is expressed, evaluated, and bound to execution so that
+AI agents, services, and systems can act with coherence, control, and traceability.
 
 ---
 
 ## Why SIS Exists
 
-Today, every system represents intent differently.
+Most AI systems fail after making a valid decision.
 
-- Agents pass loosely structured payloads  
-- Control logic is embedded in application code  
-- Policies are fragmented across services  
-- Decisions are opaque and non-portable  
+Not because the model was wrong.  
+Not because the policy was missing.
 
-This creates:
+But because:
 
-- inconsistent behavior  
-- hidden decision logic  
-- inability to audit or reproduce outcomes  
-- fragile integrations between systems  
+- intent was incomplete
+- context was fragmented
+- constraints were implicit
+- execution was not bound to the decision
 
-SIS standardizes the shape of intent so that decisions can be:
-
-- **evaluated consistently**  
-- **enforced deterministically**  
-- **observed and explained**  
-- **shared across systems**
+SIS solves this by defining a structured contract between intent and action.
 
 ---
 
-## What SIS Defines
+## What SIS Standardizes
 
-SIS defines a minimal, extensible structure for:
+SIS introduces a canonical structure for:
 
-### 1. Intent
-What action is being proposed.
+- **Intent** — what the system is trying to achieve
+- **Context** — the state and environment the decision depends on
+- **Constraints** — explicit boundaries for acceptable execution
+- **Evaluation** — how admissibility is determined
+- **Decision** — allow, deny, escalate, or modify
+- **Execution Binding** — the conditions under which execution is permitted
+- **Evidence** — traceable rationale for the decision
 
-### 2. Context
-The data and environment surrounding the intent.
-
-### 3. Constraints
-Rules, policies, and boundaries applied to the intent.
-
-### 4. Evaluation
-The process of determining whether the intent is allowed.
-
-### 5. Decision
-The outcome of evaluation:
-- approved  
-- denied  
-- modified  
-- escalated  
-
-### 6. Execution Binding
-How an approved decision maps to execution systems.
+This creates a system where a decision is not complete until it is safe to execute.
 
 ---
 
-## Core Model
+## Positioning
 
-```json
-{
-  "intent": {
-    "action": "transfer_funds",
-    "actor": "agent:finance",
-    "target": "account:external",
-    "amount": 5000
-  },
-  "context": {
-    "environment": "production",
-    "timestamp": "2026-01-01T12:00:00Z"
-  },
-  "constraints": [
-    {
-      "type": "limit",
-      "rule": "max_transfer <= 1000"
-    }
-  ],
-  "evaluation": {
-    "status": "denied",
-    "reason": "Amount exceeds allowed threshold"
-  },
-  "decision": {
-    "result": "denied",
-    "explanation": "Transfer amount violates policy"
-  }
-}
+SIS is not:
+
+- a model
+- a policy engine
+- a governance dashboard
+
+SIS is the standard interface between decision and execution.
+
+It sits between:
+
+- agent reasoning systems
+- orchestration layers
+- runtime execution environments
+
+---
+
+## Where SIS Fits
+
+```text
+[ Agent / LLM ]
+        ↓
+[ Intent Formation ]
+        ↓
+====== SIS ======
+(Decision Contract Layer)
+        ↓
+[ Execution Systems ]
+        ↓
+[ Real-World Impact ]
